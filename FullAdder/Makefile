@@ -5,7 +5,7 @@ CFLAGS= -Wall -O3
 LDFLAGS= -L. -lfhew -lfftw3 
 INCLUDE=distrib.h LWE.h FHEW.h FFT.h params.h
 
-all: libfhew.a cmd fhewTest
+all: libfhew.a cmd fulladder
 
 cmd: cmd/gen cmd/enc cmd/nand cmd/dec
 
@@ -18,7 +18,7 @@ uninstall:
 	rm $(PREFIX)/lib/{distrib,LWE,FHEW,FFT,params}.h
 
 clean:
-	rm *.o libfhew.a fhewTest cmd/gen cmd/enc cmd/dec cmd/nand || echo nothing to clean
+	rm *.o libfhew.a fulladder cmd/gen cmd/enc cmd/dec cmd/nand || echo nothing to clean
 
 libfhew.a: distrib.o FFT.o LWE.o FHEW.o
 	$(AR) -q libfhew.a distrib.o FFT.o LWE.o FHEW.o
@@ -35,8 +35,8 @@ LWE.o: LWE.h LWE.cpp FFT.h params.h distrib.h
 FHEW.o: FHEW.h FHEW.cpp FFT.h LWE.h params.h
 	$(CC) $(CFLAGS) -c FHEW.cpp
 
-fhewTest: fhewTest.cpp libfhew.a
-	$(CC) $(CFLAGS) -o fhewTest fhewTest.cpp $(LDFLAGS)
+fulladder: fulladder.cpp libfhew.a
+	$(CC) $(CFLAGS) -o fulladder fulladder.cpp $(LDFLAGS)
 
 common.o: cmd/common.cpp cmd/common.h libfhew.a
 	$(CC) $(CFLAGS) -c cmd/common.cpp 
