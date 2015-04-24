@@ -50,7 +50,7 @@ SC_MODULE(tb)
 	{
 		SC_CTHREAD(gen_input, clk.pos());
 		SC_METHOD(display_variable);
-		sensitive << dataOut << dataIn << selIn;
+		sensitive << dataOut << en_n << dataIn << selIn;
 		dont_initialize();
 	}
 

@@ -1,5 +1,5 @@
 $date
-     Apr 24, 2015       12:48:51
+     Apr 24, 2015       15:08:06
 $end
 
 $version
@@ -15,6 +15,7 @@ $var wire    1  aaaaa  CLK       $end
 $var wire    1  aaaab  dataOut       $end
 $var wire    3  aaaac  selIn [2:0]  $end
 $var wire    8  aaaad  dataIn [7:0]  $end
+$var wire    1  aaaae  en_n       $end
 $upscope $end
 $enddefinitions  $end
 
@@ -27,6 +28,7 @@ $dumpvars
 0aaaab
 b0 aaaac
 b0 aaaad
+0aaaae
 $end
 
 #10000

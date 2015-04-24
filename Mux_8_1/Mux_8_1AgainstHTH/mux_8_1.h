@@ -41,7 +41,7 @@ SC_MODULE(mux_8_1)
 	SC_CTOR(mux_8_1)
 	{
 		SC_METHOD(do_mux);
-		sensitive << dataIn << selIn;
+		sensitive << en_n << dataIn << selIn;
 	}
 
 };
