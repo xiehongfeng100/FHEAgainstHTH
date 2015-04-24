@@ -11,16 +11,21 @@ SC_MODULE(tb)
 	sc_in<sc_uint<OUTPUTSIZE> > dataOut;
 	sc_in_clk clk;
 
+	void writeData(unsigned int data, unsigned int sel)
+	{
+		wait(); dataIn = data; selIn = sel;
+	}
+
 	void gen_input()
-	{	
-		wait(); dataIn.write(0xC8); selIn.write(0x0);
-		wait(); dataIn.write(0xC8); selIn.write(0x1);
-		wait(); dataIn.write(0xC8); selIn.write(0x2);
-		wait(); dataIn.write(0xC8); selIn.write(0x3);
-		wait(); dataIn.write(0xC8); selIn.write(0x4);
-		wait(); dataIn.write(0xC8); selIn.write(0x5);
-		wait(); dataIn.write(0xC8); selIn.write(0x6);
-		wait(); dataIn.write(0xC8); selIn.write(0x7);
+	{
+		writeData(200, 0);
+		writeData(200, 1);
+		writeData(200, 2);
+		writeData(200, 3);
+		writeData(200, 4);
+		writeData(200, 5);
+		writeData(200, 6);
+		writeData(200, 7);
 	}
 
 	void display_variable()

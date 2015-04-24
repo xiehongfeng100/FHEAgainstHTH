@@ -1,0 +1,201 @@
+$date
+     Apr 24, 2015       14:27:52
+$end
+
+$version
+ SystemC 2.3.1-Accellera --- Mar 19 2015 21:04:40
+$end
+
+$timescale
+     1 ps
+$end
+
+$scope module SystemC $end
+$var wire    1  aaaaa  CLK       $end
+$var wire    1  aaaab  dataOut       $end
+$var wire    3  aaaac  selIn [2:0]  $end
+$var wire    8  aaaad  dataIn [7:0]  $end
+$var wire    1  aaaae  en_n       $end
+$upscope $end
+$enddefinitions  $end
+
+$comment
+All initial values are dumped below at time 0 sec = 0 timescale units.
+$end
+
+$dumpvars
+1aaaaa
+0aaaab
+b0 aaaac
+b0 aaaad
+0aaaae
+$end
+
+#10000
+0aaaaa
+
+#20000
+1aaaaa
+b111 aaaac
+b11001000 aaaad
+1aaaae
+
+#30000
+0aaaaa
+
+#40000
+1aaaaa
+
+#50000
+0aaaaa
+
+#60000
+1aaaaa
+
+#70000
+0aaaaa
+
+#80000
+1aaaaa
+b0 aaaac
+0aaaae
+
+#90000
+0aaaaa
+
+#100000
+1aaaaa
+b1 aaaac
+
+#110000
+0aaaaa
+
+#120000
+1aaaaa
+b10 aaaac
+
+#130000
+0aaaaa
+
+#140000
+1aaaaa
+1aaaab
+b11 aaaac
+
+#150000
+0aaaaa
+
+#160000
+1aaaaa
+0aaaab
+b100 aaaac
+
+#170000
+0aaaaa
+
+#180000
+1aaaaa
+b101 aaaac
+
+#190000
+0aaaaa
+
+#200000
+1aaaaa
+1aaaab
+b110 aaaac
+
+#210000
+0aaaaa
+
+#220000
+1aaaaa
+b111 aaaac
+
+#230000
+0aaaaa
+
+#240000
+1aaaaa
+0aaaab
+b100 aaaac
+1aaaae
+
+#250000
+0aaaaa
+
+#260000
+1aaaaa
+b101 aaaac
+
+#270000
+0aaaaa
+
+#280000
+1aaaaa
+b110 aaaac
+
+#290000
+0aaaaa
+
+#300000
+1aaaaa
+b111 aaaac
+
+#310000
+0aaaaa
+
+#320000
+1aaaaa
+
+#330000
+0aaaaa
+
+#340000
+1aaaaa
+
+#350000
+0aaaaa
+
+#360000
+1aaaaa
+
+#370000
+0aaaaa
+
+#380000
+1aaaaa
+
+#390000
+0aaaaa
+
+#400000
+1aaaaa
+
+#410000
+0aaaaa
+
+#420000
+1aaaaa
+
+#430000
+0aaaaa
+
+#440000
+1aaaaa
+
+#450000
+0aaaaa
+
+#460000
+1aaaaa
+
+#470000
+0aaaaa
+
+#480000
+1aaaaa
+
+#490000
+0aaaaa
+
