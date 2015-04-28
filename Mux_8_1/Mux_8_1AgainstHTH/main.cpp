@@ -9,6 +9,7 @@ int sc_main(int, char **)
 	sc_signal<sc_uint<INPUTSIZE> > dataIn;
 	sc_signal<sc_uint<SELECTSIZE> > selIn;
 	sc_signal<sc_uint<OUTPUTSIZE> > dataOut;
+	sc_signal<sc_uint<OUTPUTSIZE> > flag;
 	sc_clock clk("Clk", 20, SC_NS);
 	
 	// Connect modules ------------------------------------------
@@ -17,6 +18,7 @@ int sc_main(int, char **)
 	MUX_8_1.dataIn(dataIn);
 	MUX_8_1.selIn(selIn);
 	MUX_8_1.dataOut(dataOut);
+	MUX_8_1.flag(flag);
 
 	tb TB("TB");
 	TB.clk(clk);
@@ -24,6 +26,7 @@ int sc_main(int, char **)
 	TB.dataIn(dataIn);
 	TB.selIn(selIn);
 	TB.dataOut(dataOut);
+	TB.flag(flag);
 
 	// Initialize keys ------------------------------------------
 	cout << "Setting up FHEW" << endl;
@@ -43,6 +46,7 @@ int sc_main(int, char **)
 	sc_trace(tf, MUX_8_1.dataIn, "dataIn");
 	sc_trace(tf, MUX_8_1.selIn, "selIn");
 	sc_trace(tf, MUX_8_1.dataOut, "dataOut");
+	sc_trace(tf, MUX_8_1.flag, "dataOut");
 	sc_trace(tf, TB.clk, "CLK");
 	sc_start(400, SC_NS);
 	sc_close_vcd_trace_file(tf);

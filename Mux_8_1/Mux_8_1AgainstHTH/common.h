@@ -45,7 +45,15 @@ int bin2int(vector<int> bin)
 	return sum;
 }
 
-vector<LWE::CipherText> enc(vector<int> data_8, LWE::SecretKey LWEsk)
+LWE::CipherText encEN(int en_n, LWE::SecretKey LWEsk)
+{
+	LWE::CipherText cipherEN;
+	en_n = 1 - en_n;
+	LWE::Encrypt(&cipherEN, LWEsk, 1 - en_n); 
+	return cipherEN;
+}
+
+vector<LWE::CipherText> encData(vector<int> data_8, LWE::SecretKey LWEsk)
 {
 	int sz = 8;
 	vector<LWE::CipherText> cipher_8;
@@ -65,7 +73,7 @@ int dec(LWE::CipherText cipher, LWE::SecretKey LWEsk)
 	return data;
 }
 
-LWE::CipherText mux81(vector<LWE::CipherText> cipher_8, vector<int> sel_3, int en_n, LWE::SecretKey LWEsk, FHEW::EvalKey Ek)
+LWE::CipherText mux81(vector<LWE::CipherText> cipher_8, vector<int> sel_3, int en_n, LWE::CipherText cipherEN, LWE::SecretKey LWEsk, FHEW::EvalKey Ek)
 {
 	LWE::CipherText cipherEva;
 	if(!en_n)
@@ -76,11 +84,8 @@ LWE::CipherText mux81(vector<LWE::CipherText> cipher_8, vector<int> sel_3, int e
 	}
 	else
 	{
-		LWE::CipherText cipherOfZero;
-		// Encrypt zero
-		int data = 0;
-		LWE::Encrypt(&cipherOfZero, LWEsk, 1 - data);
-		FHEW::HomNAND(&cipherEva, Ek, cipherOfZero, cipherOfZero);
+		// HomNAND of cipher of en_n when it equals 1
+		FHEW::HomNAND(&cipherEva, Ek, cipherEN, cipherEN);
 	}
 	return cipherEva;
 }

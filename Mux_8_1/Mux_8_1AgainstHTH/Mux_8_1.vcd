@@ -1,5 +1,5 @@
 $date
-     Apr 24, 2015       14:27:52
+     Apr 28, 2015       23:34:34
 $end
 
 $version
@@ -13,9 +13,10 @@ $end
 $scope module SystemC $end
 $var wire    1  aaaaa  CLK       $end
 $var wire    1  aaaab  dataOut       $end
-$var wire    3  aaaac  selIn [2:0]  $end
-$var wire    8  aaaad  dataIn [7:0]  $end
-$var wire    1  aaaae  en_n       $end
+$var wire    1  aaaac  dataOut       $end
+$var wire    3  aaaad  selIn [2:0]  $end
+$var wire    8  aaaae  dataIn [7:0]  $end
+$var wire    1  aaaaf  en_n       $end
 $upscope $end
 $enddefinitions  $end
 
@@ -26,9 +27,10 @@ $end
 $dumpvars
 1aaaaa
 0aaaab
-b0 aaaac
+0aaaac
 b0 aaaad
-0aaaae
+b0 aaaae
+0aaaaf
 $end
 
 #10000
@@ -36,9 +38,9 @@ $end
 
 #20000
 1aaaaa
-b111 aaaac
-b11001000 aaaad
-1aaaae
+b111 aaaad
+b11001000 aaaae
+1aaaaf
 
 #30000
 0aaaaa
@@ -57,90 +59,90 @@ b11001000 aaaad
 
 #80000
 1aaaaa
-b0 aaaac
-0aaaae
+b0 aaaad
+0aaaaf
 
 #90000
 0aaaaa
 
 #100000
 1aaaaa
-b1 aaaac
+b1 aaaad
 
 #110000
 0aaaaa
 
 #120000
 1aaaaa
-b10 aaaac
+b10 aaaad
 
 #130000
 0aaaaa
 
 #140000
 1aaaaa
-1aaaab
-b11 aaaac
+1aaaac
+b11 aaaad
 
 #150000
 0aaaaa
 
 #160000
 1aaaaa
-0aaaab
-b100 aaaac
+0aaaac
+b100 aaaad
 
 #170000
 0aaaaa
 
 #180000
 1aaaaa
-b101 aaaac
+b101 aaaad
 
 #190000
 0aaaaa
 
 #200000
 1aaaaa
-1aaaab
-b110 aaaac
+1aaaac
+b110 aaaad
 
 #210000
 0aaaaa
 
 #220000
 1aaaaa
-b111 aaaac
+b111 aaaad
 
 #230000
 0aaaaa
 
 #240000
 1aaaaa
-0aaaab
-b100 aaaac
-1aaaae
+0aaaac
+b100 aaaad
+1aaaaf
 
 #250000
 0aaaaa
 
 #260000
 1aaaaa
-b101 aaaac
+b101 aaaad
 
 #270000
 0aaaaa
 
 #280000
 1aaaaa
-b110 aaaac
+b110 aaaad
 
 #290000
 0aaaaa
 
 #300000
 1aaaaa
-b111 aaaac
+b111 aaaad
 
 #310000
 0aaaaa
@@ -167,35 +169,5 @@ b111 aaaac
 1aaaaa
 
 #390000
-0aaaaa
-
-#400000
-1aaaaa
-
-#410000
-0aaaaa
-
-#420000
-1aaaaa
-
-#430000
-0aaaaa
-
-#440000
-1aaaaa
-
-#450000
-0aaaaa
-
-#460000
-1aaaaa
-
-#470000
-0aaaaa
-
-#480000
-1aaaaa
-
-#490000
 0aaaaa
 

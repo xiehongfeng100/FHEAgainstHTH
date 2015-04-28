@@ -10,6 +10,7 @@ SC_MODULE(tb)
 	sc_out<sc_uint<INPUTSIZE> > dataIn;
 	sc_out<sc_uint<SELECTSIZE> > selIn;
 	sc_in<sc_uint<OUTPUTSIZE> > dataOut;
+	sc_in<sc_uint<OUTPUTSIZE> > flag;
 	sc_in_clk clk;
 
 	void writeData(unsigned int en, unsigned int data, unsigned int sel)
@@ -43,14 +44,15 @@ SC_MODULE(tb)
 
 	void display_variable()
 	{
-		cout << "en_n = " << en_n << ", dataIn = " << dataIn << ", selIn = " << selIn << ", dataOut = " << dataOut << endl;
+		cout << "en_n = " << en_n << ", dataIn = " << dataIn << ", selIn = " << selIn << ", dataOut = " << dataOut
+			<< ", flag = " << flag << endl;
 	}
 	
 	SC_CTOR(tb)
 	{
 		SC_CTHREAD(gen_input, clk.pos());
 		SC_METHOD(display_variable);
-		sensitive << dataOut << en_n << dataIn << selIn;
+		sensitive << flag << dataOut << en_n << dataIn << selIn;
 		dont_initialize();
 	}
 
