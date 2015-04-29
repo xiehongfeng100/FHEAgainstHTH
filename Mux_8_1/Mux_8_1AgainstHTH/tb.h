@@ -36,10 +36,10 @@ SC_MODULE(tb)
 		writeData(0, 200, 6);
 		writeData(0, 200, 7);
 		
+		writeData(1, 200, 3);
 		writeData(1, 200, 4);
 		writeData(1, 200, 5);
 		writeData(1, 200, 6);
-		writeData(1, 200, 7);
 	}
 
 	void display_variable()

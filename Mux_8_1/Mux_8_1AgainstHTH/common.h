@@ -84,8 +84,20 @@ LWE::CipherText mux81(vector<LWE::CipherText> cipher_8, vector<int> sel_3, int e
 	}
 	else
 	{
-		// HomNAND of cipher of en_n when it equals 1
-		FHEW::HomNAND(&cipherEva, Ek, cipherEN, cipherEN);
+		// -- codes commented below is to simulate attack on enable signal 'en_n' ----------------
+		// int pos = bin2int(sel_3);
+		// if(pos == 3 || pos == 6)
+		// {
+		//		LWE::CipherText cipherOfOne;
+		//		int data = 1;
+		//		LWE::Encrypt(&cipherOfOne, LWEsk, 1 - data);
+		//		FHEW::HomNAND(&cipherEva, Ek, cipherOfOne, cipherOfOne);
+		// }
+		// else
+		// {
+			// HomNAND of cipher of en_n when it equals 1
+			FHEW::HomNAND(&cipherEva, Ek, cipherEN, cipherEN);
+		// }
 	}
 	return cipherEva;
 }
