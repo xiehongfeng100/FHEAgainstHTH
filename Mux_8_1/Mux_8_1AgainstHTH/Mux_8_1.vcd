@@ -1,5 +1,5 @@
 $date
-     Apr 28, 2015       23:34:34
+     Apr 29, 2015       08:54:26
 $end
 
 $version
@@ -12,7 +12,7 @@ $end
 
 $scope module SystemC $end
 $var wire    1  aaaaa  CLK       $end
-$var wire    1  aaaab  dataOut       $end
+$var wire    1  aaaab  flag       $end
 $var wire    1  aaaac  dataOut       $end
 $var wire    3  aaaad  selIn [2:0]  $end
 $var wire    8  aaaae  dataIn [7:0]  $end
