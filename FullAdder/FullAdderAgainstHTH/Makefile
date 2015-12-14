@@ -10,11 +10,11 @@ EXE=main
 
 all: libfhew.a main
 
-main: nand.h tb.h main.cpp libfhew.a
+main: fulladder.h tb.h main.cpp libfhew.a
 	$(CC) $(CFLAGS) -o $(EXE) main.cpp $(LDFLAGS) $(LIB_DIR) $(INC_DIR) $(LIB)
 
-libfhew.a: distrib.o FFT.o LWE.o FHEW.o fulladder.o
-	$(AR) -q libfhew.a distrib.o FFT.o LWE.o FHEW.o fulladder.o
+libfhew.a: distrib.o FFT.o LWE.o FHEW.o
+	$(AR) -q libfhew.a distrib.o FFT.o LWE.o FHEW.o
 
 distrib.o: distrib.cpp distrib.h params.h
 	$(CC) $(CFLAGS) -c distrib.cpp
@@ -27,9 +27,6 @@ LWE.o: LWE.h LWE.cpp FFT.h params.h distrib.h
 
 FHEW.o: FHEW.h FHEW.cpp FFT.h LWE.h params.h
 	$(CC) $(CFLAGS) -c FHEW.cpp
-
-fulladder.o: fulladder.h fulladder.cpp LWE.h FHEW.h
-	$(CC) $(CFLAGS) -c fulladder.cpp
 
 .PHONY:clean
 clean:

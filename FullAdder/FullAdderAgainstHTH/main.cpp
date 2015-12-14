@@ -1,15 +1,7 @@
 #include <systemc.h>
-#include "nand.h"
-#include "tb.h"
-
-#include <iostream>
-#include <cstdlib>
-#include <vector>
-#include <algorithm>
-#include "LWE.h"
-#include "FHEW.h"
-#include "distrib.h"
+#include "common.h"
 #include "fulladder.h"
+#include "tb.h"
 
 using namespace std;
 
@@ -20,56 +12,51 @@ void output(int& elem)
 
 int sc_main(int, char **)
 {
-	sc_signal<bool> a, b, f;
-	sc_clock clk("Clk", 20, SC_NS);
-	
-	nand NAND("NAND");
-	NAND.A(a);
-	NAND.B(b);
-	NAND.F(f);
+    sc_signal<sc_uint<INPUTSIZE> > A_sc;
+    sc_signal<sc_uint<INPUTSIZE> > B_sc;
+    sc_signal<sc_uint<CARRYSIZE> > Cin_sc;
+    sc_signal<sc_uint<OUTPUTSIZE> > S_sc;
+    sc_signal<sc_uint<CARRYSIZE> > Cout_sc;
+    sc_clock clk("Clk", 20, SC_NS);
 
-	tb TB("TB");
-	TB.clk(clk);
-	TB.a(a);
-	TB.b(b);
-	TB.f(f);
+    // Connect modules
+    fulladder FullAdder("FullAdder");
+    FullAdder.A_sc(A_sc);
+    FullAdder.B_sc(B_sc);
+    FullAdder.Cin_sc(Cin_sc);
+    FullAdder.S_sc(S_sc);
+    FullAdder.Cout_sc(Cout_sc);
 
-	// create trace file
-	sc_trace_file *tf = sc_create_vcd_trace_file("NAND");
-	sc_trace(tf, NAND.A, "A");
-	sc_trace(tf, NAND.B, "B");
-	sc_trace(tf, NAND.F, "F");
-	sc_trace(tf, TB.clk, "CLK");
-	sc_start(200, SC_NS);
-	sc_close_vcd_trace_file(tf);
+    tb TB("TB");
+    TB.clk(clk);
+    TB.A_sc(A_sc); 
+    TB.B_sc(B_sc); 
+    TB.Cin_sc(Cin_sc);
+    TB.S_sc(S_sc);
+    TB.Cout_sc(Cout_sc);
 
+    // Initialize keys
     cerr << "Setting up FHEW \n";
     FHEW::Setup();
     cerr << "Generating secret key ... ";
-    LWE::SecretKey LWEsk;
+    // LWE::SecretKey LWEsk;
     LWE::KeyGen(LWEsk);
     cerr << " Done.\n";
     cerr << "Generating evaluation key ... this may take a while ... ";
-    FHEW::EvalKey EK;
-    FHEW::KeyGen(&EK, LWEsk);
+    // FHEW::EvalKey EK;
+    FHEW::KeyGen(&Ek, LWEsk);
     cerr << " Done.\n\n";
       	
-    vector<int> A = int2bin(100);
-    vector<int> B = int2bin(7);
-    int C = 0;
-
-    cout << "A: ";
-    for_each(A.begin(), A.end(), output);
-    cout << endl;
-    cout << "B: ";
-    for_each(B.begin(), B.end(), output);
-    cout << endl;
-    cout << "C: " << C;
-    cout << endl;
+    // create trace file
+    sc_trace_file *tf = sc_create_vcd_trace_file("FullAdder"); 
+    sc_trace(tf, FullAdder.A_sc, "A"); 
+    sc_trace(tf, FullAdder.B_sc, "B");
+    sc_trace(tf, FullAdder.Cin_sc, "Cin");
+    sc_trace(tf, FullAdder.S_sc, "S");
+    sc_trace(tf, FullAdder.Cout_sc, "Cout");
+    sc_trace(tf, TB.clk, "CLK");
+    sc_start(400, SC_NS);
+    sc_close_vcd_trace_file(tf);
     
-    vector<int> fulladdInBin = fulladder(A, B, C, LWEsk, EK);
-    int fulladdInInt = bin2int(fulladdInBin);
-    cout << "Full add(in int): " << fulladdInInt << endl;
-
     return 0;
 }

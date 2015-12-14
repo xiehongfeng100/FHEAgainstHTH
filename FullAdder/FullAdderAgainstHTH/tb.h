@@ -2,33 +2,51 @@
 #define TB_H
 
 #include <systemc.h>
+#include "common.h"
 
 SC_MODULE(tb)
 {
-	sc_out<bool> a, b;
-	sc_in<bool> f;
+	sc_out<sc_uint<INPUTSIZE> > A_sc;
+	sc_out<sc_uint<INPUTSIZE> > B_sc;
+	sc_out<sc_uint<CARRYSIZE> > Cin_sc;
+	sc_in<sc_uint<OUTPUTSIZE> > S_sc;
+	sc_in<sc_uint<CARRYSIZE> > Cout_sc;
 	sc_in_clk clk;
 
-	void gen_input()
+	void writeData(unsigned int A, unsigned int B, unsigned int Cin)
 	{
-		wait(); a = 0; b = 0;
-		wait(); a = 0; b = 1;
-		wait(); a = 1; b = 0;
-		wait(); a = 1; b = 1;
-		wait(); a = 0; b = 0;
-		wait(); a = 0; b = 0;
+		wait();
+		A_sc = A;
+		B_sc = B;
+		Cin_sc = Cin;
 	}
 
-	void display_variable()
+	void genInput()
 	{
-		cout << "a = " << a << ", b = " << b << ", f = " << f << endl;
+		writeData(0, 0, 0);
+		writeData(0, 0, 1);
+		writeData(1, 0, 0);
+		writeData(0, 1, 0);
+		writeData(1, 0, 1);
+		writeData(0, 0, 1);
+		writeData(1, 0, 0);
+		
+		writeData(128, 1, 0);
+		writeData(128, 0, 1);
+
+	}
+
+	void displayVariable()
+	{
+		cout << "A = " << A_sc << ", B = " << B_sc << ", Cin = " << Cin_sc << endl;
+		cout << "S = " << S_sc << ", Cout = " << Cout_sc << endl;
 	}
 	
 	SC_CTOR(tb)
 	{
-		SC_CTHREAD(gen_input, clk.pos());
-		SC_METHOD(display_variable);
-		sensitive << f << a << b;
+		SC_CTHREAD(genInput, clk.pos());
+		SC_METHOD(displayVariable);
+		sensitive << A_sc << B_sc << Cin_sc << S_sc << Cout_sc;
 		dont_initialize();
 	}
 

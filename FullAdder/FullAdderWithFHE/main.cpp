@@ -38,8 +38,8 @@ int main()
   FHEW::KeyGen(&EK, LWEsk);
   cerr << " Done.\n\n";
 		
-  vector<int> A = int2bin(100);
-  vector<int> B = int2bin(7);
+  vector<int> A = int2bin(3);
+  vector<int> B = int2bin(6);
   int C = 0;
 
   cout << "A: ";
