@@ -24,22 +24,22 @@ SC_MODULE(tb)
 	void genInput()
 	{
 		writeData(0, 0, 0);
-		writeData(0, 0, 1);
 		writeData(1, 0, 0);
 		writeData(0, 1, 0);
-		writeData(1, 0, 1);
 		writeData(0, 0, 1);
-		writeData(1, 0, 0);
-		
-		writeData(128, 1, 0);
-		writeData(128, 0, 1);
 
+		writeData(127, 128, 0);
+		writeData(127, 128, 1);
+		writeData(128, 128, 0);
+		
+		writeData(255, 255, 0);
+		writeData(255, 255, 1);
 	}
 
 	void displayVariable()
 	{
-		cout << "A = " << A_sc << ", B = " << B_sc << ", Cin = " << Cin_sc << endl;
-		cout << "S = " << S_sc << ", Cout = " << Cout_sc << endl;
+		cout << "A = " << A_sc << ", B = " << B_sc << ", Cin = " << Cin_sc;
+		cout << ", S = " << S_sc << ", Cout = " << Cout_sc << endl;
 	}
 	
 	SC_CTOR(tb)

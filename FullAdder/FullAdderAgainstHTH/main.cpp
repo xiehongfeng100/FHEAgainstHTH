@@ -43,7 +43,7 @@ int sc_main(int, char **)
     LWE::KeyGen(LWEsk);
     cerr << " Done.\n";
     cerr << "Generating evaluation key ... this may take a while ... ";
-    // FHEW::EvalKey EK;
+    // FHEW::EvalKey Ek;
     FHEW::KeyGen(&Ek, LWEsk);
     cerr << " Done.\n\n";
       	
@@ -54,7 +54,7 @@ int sc_main(int, char **)
     sc_trace(tf, FullAdder.Cin_sc, "Cin");
     sc_trace(tf, FullAdder.S_sc, "S");
     sc_trace(tf, FullAdder.Cout_sc, "Cout");
-    sc_trace(tf, TB.clk, "CLK");
+    sc_trace(tf, TB.clk, "clk");
     sc_start(400, SC_NS);
     sc_close_vcd_trace_file(tf);
     

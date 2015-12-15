@@ -37,7 +37,7 @@ SC_MODULE(fulladder)
 		// cipherOfC.resize(INPUTSIZE + 1);
 		// rcipherOfC.resize(INPUTSIZE + 1);
 		
-		// Read A, B and C
+		// Read A, B and Cin
 		A = int2bin(A_sc.read());
 		B = int2bin(B_sc.read());
 		Cin = Cin_sc.read();
@@ -53,7 +53,10 @@ SC_MODULE(fulladder)
 		dec(LWEsk, cipherEvaOfAB, rcipherEvaOfAB, cipherEvaOfC, S, Cout);
 
 		// Write data
-		S_sc.write(bin2int(S));
+		// Cout = S[INPUTSIZE];
+		// S.resize(INPUTSIZE);
+		int tmp = bin2int(S);
+		S_sc.write(tmp);
 		Cout_sc.write(Cout);
 
 	}

@@ -57,7 +57,7 @@ void enc(vector<int> A, vector<int> B, int Cin, LWE::SecretKey LWEsk,
 	cipherOfB.resize(INPUTSIZE);
 	rcipherOfB.resize(INPUTSIZE);
 
-	cipherOfC.resize(INPUTSIZE);
+	cipherOfC.resize(INPUTSIZE + 1);
 
 	// Encryption
 	LWE::Encrypt(&cipherOfC[0], LWEsk, 1 - Cin);
@@ -100,8 +100,8 @@ void eva(FHEW::EvalKey Ek,
 
 
 void dec(LWE::SecretKey LWEsk,
-		vector<LWE::CipherText> cipherEvaOfAB, vector<LWE::CipherText> rcipherEvaOfAB,
-		vector<LWE::CipherText> cipherEvaOfC,
+		vector<LWE::CipherText>& cipherEvaOfAB, vector<LWE::CipherText>& rcipherEvaOfAB,
+		vector<LWE::CipherText>& cipherEvaOfC,
 		vector<int>& S, int& Cout)
 {
 	vector<int> product(INPUTSIZE + 1, 0), carry(INPUTSIZE + 1, 0);
