@@ -34,18 +34,6 @@ int sc_main(int, char **)
     TB.Cin_sc(Cin_sc);
     TB.S_sc(S_sc);
     TB.Cout_sc(Cout_sc);
-
-    // Initialize keys
-    cerr << "Setting up FHEW \n";
-    FHEW::Setup();
-    cerr << "Generating secret key ... ";
-    // LWE::SecretKey LWEsk;
-    LWE::KeyGen(LWEsk);
-    cerr << " Done.\n";
-    cerr << "Generating evaluation key ... this may take a while ... ";
-    // FHEW::EvalKey Ek;
-    FHEW::KeyGen(&Ek, LWEsk);
-    cerr << " Done.\n\n";
       	
     // create trace file
     sc_trace_file *tf = sc_create_vcd_trace_file("FullAdder"); 
